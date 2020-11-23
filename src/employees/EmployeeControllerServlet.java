@@ -73,6 +73,11 @@ public class EmployeeControllerServlet extends HttpServlet {
 				updateEmployee(request,response);
 				break;
 				
+			case "DELETE":
+				deleteEmployee(request,response);
+				break;
+				
+				
 			default:
 				System.out.println("hmmm I'm confused :(");
 			}
@@ -85,16 +90,30 @@ public class EmployeeControllerServlet extends HttpServlet {
 	}
 
 
+	private void deleteEmployee(HttpServletRequest request, HttpServletResponse response)
+		throws Exception {
+		
+		// read student id from the form data
+			String theEmployeeId = request.getParameter("emp_no");
+			
+		// delete student from database
+			employeeDbutil.deleteEmployee(theEmployeeId);
+		// send them back to "list students" page
+		    listEmployees(request, response);
+	}
+
+
 	private void updateEmployee(HttpServletRequest request, HttpServletResponse response)
 	throws Exception {
 		
 		// read student info from form data
 		int emp_no = Integer.parseInt(request.getParameter("emp_no"));
+		String birthDate = request.getParameter("birthDate");
 		String firstName = request.getParameter("firstName"); 
 		String lastName = request.getParameter("lastName");
 		String gender = request.getParameter("gender");
 		String hireDate = request.getParameter("hireDate");
-		String birthDate = request.getParameter("birthDate");
+		
 		// create a new employee object
 		Employee theEmployee = new Employee(emp_no, birthDate, firstName, lastName, gender, hireDate);
 		

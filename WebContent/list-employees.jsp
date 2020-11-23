@@ -61,6 +61,12 @@
 					<c:param name="emp_no" value="${tempEmployee.emp_no}" />
 				</c:url>	
 				
+				<! -- set up a delete link for each employee -->
+				<c:url var="deleteLink" value="EmployeeControllerServlet">
+					<c:param name="command" value="DELETE" />
+					<c:param name="emp_no" value="${tempEmployee.emp_no}" />
+				</c:url>	
+				
 				<tr>
 					<td> ${tempEmployee.emp_no} </td>
 					<td> ${tempEmployee.birth_date}</td>
@@ -68,7 +74,13 @@
 					<td> ${tempEmployee.last_name}  </td>
 					<td> ${tempEmployee.gender} </td>
 					<td> ${tempEmployee.hire_date} </td>
-					<td> <a href="${tempLink}">Update</a> </td>
+					<td> 
+					<a href="${tempLink}">Update</a> 
+					  |
+				    <a href= "${deleteLink}"
+				    onclick="if (!(confirm('Are you sure you want to delte this employee?'))) return flase">
+				    Delete</a>
+					</td>
 				</tr>
 				
 				</c:forEach>

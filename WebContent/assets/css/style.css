@@ -6,7 +6,7 @@ html, body{
 
 table {   
 	border-collapse:collapse;
-	border-bottom:1px solid gray;
+	border-bottom:1px solid rgb(255, 255, 255);
 	font-family: Tahoma,Verdana,Segoe,sans-serif;
 	width:72%;
 }
@@ -19,22 +19,22 @@ th {
 }
 
 tr {
-	border-top:1px solid gray;
+	border-top:1px solid rgb(255, 255, 255);
 	text-align:center;	
 }
  
-tr:nth-child(even) {background: #FFFFFF}
-tr:nth-child(odd) {background: #BBBBBB}	
+tr:nth-child(even) {background: rgb(229, 229, 229)})
+tr:nth-child(odd) {background: rgb(0, 0, 160)}
  
 #wrapper {width: 100%; margin-top: 0px; }
 #header {width: 72%; background: #0775d3; margin-top: 0px; padding:15px 0px 15px 0px;}
 #header h2 {width: 100%; margin:auto; color: #FFFFFF;}
 #container {width: 100%; margin:auto}
-#container h3 {color: #000;}
+#container h3 {color: rgb(255, 255, 255);}
 #container #content {margin-top: 20px;}
 
 .add-student-button {
-	border: 1px solid #666; 
+	border: 1px solid rgb(0, 0, 0); 
 	border-radius: 5px; 
 	padding: 6px; 
 	font-size: 12px;

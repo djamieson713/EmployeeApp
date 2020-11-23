@@ -147,12 +147,13 @@ private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 			// retrieve data from result set row
 			if(myRs.next()) {
 				int emp_no = myRs.getInt("emp_no");
+				String birthDate = myRs.getDate("birth_date").toString();
 				String firstName = myRs.getString("first_name"); //DB column names
 				String lastName = myRs.getString("last_name");
-				String hireDate = myRs.getDate("hire_date").toString();
-				String birthDate = myRs.getDate("birth_date").toString();
 				String gender =  myRs.getString("gender");
+				String hireDate = myRs.getDate("hire_date").toString();
 				
+	
 				// create new employee object
 				 theEmployee = new Employee(emp_no, birthDate, firstName, lastName, gender, hireDate);
 			}
@@ -180,7 +181,7 @@ private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 		
 		// create SQL update statement
 		String sql = "update employees "
-					+ "set emp_no=?, first_name=?, birth_date=?, last_name?, gender=?, hire_date=? "
+					+ "set emp_no=?, birth_date=?, first_name=?,  last_name=?, gender=?, hire_date=? "
 					+ "where emp_no=?";
 		// prepare statement
 		myStmt = myConn.prepareStatement(sql);
@@ -192,6 +193,7 @@ private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 		myStmt.setString(5, theEmployee.getGender());
 		myStmt.setDate(6,  java.sql.Date.valueOf(theEmployee.getHire_date()));
 		myStmt.setInt(7, theEmployee.getEmp_no());
+	
 		// execute SQL statement
 		
 		myStmt.execute();
@@ -199,6 +201,35 @@ private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 	finally {
 		// clean up JDBC objects
 		close(myConn, myStmt, null);
+		}
+	}
+
+	public void deleteEmployee(String theEmployeeId) throws Exception {
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		
+		try {
+			// convert employee id to int
+			int employeeId = Integer.parseInt(theEmployeeId);
+			
+			// get connection to database
+			myConn = dataSource.getConnection();
+			
+			// create sql to delete employee from db
+			String sql = "delete from employees where emp_no=?";
+			
+			// prepare statement
+			myStmt = myConn.prepareStatement(sql);
+			
+			// set params
+			myStmt.setInt(1, employeeId);
+			
+			// execute sql statement
+			myStmt.execute();		
+		}
+		finally {
+			// clean up JDBC code
+			close(myConn, myStmt, null);
 		}
 	}
 }

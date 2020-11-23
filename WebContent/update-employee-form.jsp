@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head>
@@ -16,7 +16,7 @@
 	</div>
 	
 	<div id="container">
-		<h3>Add Employee</h3>
+		<h3>Update Employee</h3>
 		
 		<form action="EmployeeControllerServlet" method="GET">
 		
@@ -32,6 +32,12 @@
 					</tr>
 					
 					<tr>
+						<td><label>Birth date:</label></td>
+						<td><input type="text" name="birthDate" 
+									value="${THE_EMPLOYEE.birth_date}"/></td>
+					</tr>
+					
+					<tr>
 						<td><label>First name:</label></td>
 						<td><input type="text" name="firstName" 
 									value="${THE_EMPLOYEE.first_name}"/></td>
@@ -42,11 +48,11 @@
 						<td><input type="text" name="lastName" 
 									value="${THE_EMPLOYEE.last_name}"/></td>
 					</tr>
-
+					
 					<tr>
-						<td><label>Birth date:</label></td>
-						<td><input type="text" name="birthDate" 
-									value="${THE_EMPLOYEE.birth_date}"/></td>
+						<td><label>Gender:</label></td>
+						<td><input type="text" name="gender" 
+									value="${THE_EMPLOYEE.gender}"/></td>
 					</tr>
 					
 					<tr>
@@ -55,13 +61,7 @@
 									value="${THE_EMPLOYEE.hire_date}"/></td>
 					</tr>
 					
-					<tr>
-						<td><label>Gender:</label></td>
-						<td><input type="text" name="gender" 
-									value="${THE_EMPLOYEE.gender}"/></td>
-					</tr>
-					
-					
+						
 					<tr>
 						<td><label></label></td>
 						<td><input type="submit" value="Save" class="save" /></td>
